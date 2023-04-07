@@ -1,0 +1,46 @@
+package com.iti.persistence;
+
+import jakarta.persistence.EntityManager;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.Optional;
+
+public abstract class BaseRepository<T> {
+    protected EntityManager entityManager;
+    protected Class<T> table;
+    protected BaseRepository(EntityManager entityManager){
+        this.entityManager = entityManager;
+        Type genericSuperclass = getClass().getGenericSuperclass();
+        ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+        this.table = (Class<T>) parameterizedType.getActualTypeArguments()[0];
+    }
+
+    // findOne
+    public Optional<T> findOne(int id){
+        return Optional.ofNullable(entityManager.find(table, id));
+    }
+
+    // findAll
+    public List<T> findAll(){
+        return entityManager.createQuery("from " + table.getName() + " u", table).getResultList();
+    }
+    // create
+    public void create(T entity){
+        entityManager.getTransaction().begin();
+        entityManager.persist(entity);
+        entityManager.getTransaction().commit();
+    }
+    // deleteById
+    public void deleteById(T entity){
+        entityManager.remove(entity);
+    }
+    // update
+    public T update(T entity){
+        entityManager.getTransaction().begin();
+        entityManager.merge(entity);
+        entityManager.getTransaction().commit();
+        return entity;
+    }
+}
