@@ -34,7 +34,7 @@ public class Actor {
     @Column(name = "last_update", nullable = false)
     private Instant lastUpdate;
 
-//    @OneToMany(mappedBy = "actor")
-//    private Set<FilmActor> filmActors = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "actor")
+    private Set<FilmActor> filmActors = new LinkedHashSet<>();
 
 }
