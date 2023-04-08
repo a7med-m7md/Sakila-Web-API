@@ -12,4 +12,9 @@ public interface ActorMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Actor partialUpdate(ActorDto actorDto, @MappingTarget Actor actor);
+
+    @AfterMapping
+    default void linkFilmActors(@MappingTarget Actor actor) {
+        actor.getActorFilms().forEach(filmActor -> filmActor.setActor(actor));
+    }
 }

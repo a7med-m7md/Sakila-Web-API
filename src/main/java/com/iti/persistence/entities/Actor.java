@@ -35,6 +35,6 @@ public class Actor {
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "actor")
-    private Set<FilmActor> filmActors = new LinkedHashSet<>();
+    private Set<FilmActor> actorFilms = new LinkedHashSet<>();
 
 }
