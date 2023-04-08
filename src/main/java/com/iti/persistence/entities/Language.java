@@ -29,9 +29,9 @@ public class Language {
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "language")
-    private Set<Film> filmLanguage = new LinkedHashSet<>();
+    private Set<Film> films = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "originalLanguage")
-    private Set<Film> filmOriginalLanguage = new LinkedHashSet<>();
+    private Set<Film> filmsOriginalLanguage = new LinkedHashSet<>();
 
 }

@@ -1,8 +1,8 @@
 package com.iti.services;
 
 import com.iti.persistence.entities.Actor;
-import com.iti.persistence.repository.BaseRepository;
 import com.iti.services.dtos.ActorDto;
+import com.iti.persistence.repository.BaseRepository;
 import com.iti.services.mappers.ActorMapper;
 import jakarta.persistence.EntityManager;
 import org.mapstruct.factory.Mappers;
@@ -17,8 +17,8 @@ public class ActorService extends BaseRepository<Actor> {
         super(entityManager);
     }
 
-    public List<ActorDto> getAllActors(){
-        List<Actor> actors = findAll();
+    public List<ActorDto> getAllActors(int page, int size){
+        List<Actor> actors = findAll(page, size);
         actorMapper = Mappers.getMapper(ActorMapper.class);
         List<ActorDto> actorDtos = new ArrayList<>();
         for(Actor actor: actors){

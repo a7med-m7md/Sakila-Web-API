@@ -3,7 +3,6 @@ package com.iti;
 import com.iti.persistence.JPAFactoryManager;
 import com.iti.persistence.entities.Actor;
 import com.iti.services.dtos.ActorDto;
-import com.iti.services.mappers.ActorMapper;
 import com.iti.services.ActorService;
 import jakarta.persistence.EntityManager;
 import jakarta.ws.rs.*;
@@ -19,10 +18,10 @@ public class ActorResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getActors(){
+    public Response getActors(@QueryParam("page") int page, @QueryParam("size") int size){
         EntityManager entityManager = JPAFactoryManager.createEntityManager();
         ActorService actorService = new ActorService(entityManager);
-        List<ActorDto> actor = actorService.getAllActors();
+        List<ActorDto> actor = actorService.getAllActors(page, size);
         return Response.ok().entity(actor).build();
     }
 
