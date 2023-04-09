@@ -1,6 +1,6 @@
-package com.iti.services.dtos;
+package com.iti.models.response;
 
-import com.iti.persistence.entities.Actor;
+import com.iti.persistence.entities.Category;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -8,20 +8,17 @@ import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Set;
 
 /**
- * A DTO for the {@link Actor} entity
+ * A DTO for the {@link Category} entity
  */
 @AllArgsConstructor
 @Getter
-public class ActorDto implements Serializable {
-    @Size(max = 45)
+public class CategoryDto implements Serializable {
+    private final Short id;
+    @Size(max = 25)
     @NotNull
-    private final String firstName;
-    @Size(max = 45)
-    @NotNull
-    private final String lastName;
+    private final String name;
     @NotNull
     private final Instant lastUpdate;
 }

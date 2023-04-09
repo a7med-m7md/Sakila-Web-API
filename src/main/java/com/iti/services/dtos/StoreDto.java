@@ -8,12 +8,14 @@ import java.io.Serializable;
 import java.time.Instant;
 
 /**
- * A DTO for the {@link com.iti.persistence.entities.FilmActor} entity
+ * A DTO for the {@link com.iti.persistence.entities.Store} entity
  */
 @AllArgsConstructor
 @Getter
-public class FilmActorDto implements Serializable {
-    private final FilmDto film;
+public class StoreDto implements Serializable {
+    private final Short id;
+    @NotNull
+    private final AddressDto address;
     @NotNull
     private final Instant lastUpdate;
 }

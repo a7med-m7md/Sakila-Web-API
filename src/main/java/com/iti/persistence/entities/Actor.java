@@ -30,8 +30,8 @@ public class Actor {
     @Column(name = "last_name", nullable = false, length = 45)
     private String lastName;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+
+    @Column(name = "last_update", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false, insertable = false, updatable = false)
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "actor")
