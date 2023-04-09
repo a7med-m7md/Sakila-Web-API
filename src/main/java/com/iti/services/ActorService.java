@@ -1,14 +1,14 @@
 package com.iti.services;
 
-import com.iti.models.response.ActorFilmResponseDto;
+import com.iti.mappers.FilmMapper;
+import com.iti.models.response.FilmResponseDto;
 import com.iti.models.response.ActorResponseDto;
 import com.iti.models.response.FilmDetailsResponseDto;
 import com.iti.persistence.entities.Actor;
 import com.iti.persistence.entities.Film;
 import com.iti.persistence.repository.ActorRepository;
-import com.iti.services.mappers.ActorFilmMapper;
-import com.iti.services.mappers.ActorMapper;
-import com.iti.services.mappers.FilmDetailsMapper;
+import com.iti.mappers.ActorMapper;
+import com.iti.mappers.FilmDetailsMapper;
 import jakarta.persistence.EntityManager;
 import org.mapstruct.factory.Mappers;
 
@@ -57,24 +57,24 @@ public class ActorService extends ActorRepository<Actor> {
         }
     }
 
-    public List<ActorFilmResponseDto> getActorFilms(int id) {
-        ActorFilmMapper actorFilmMapper = Mappers.getMapper(ActorFilmMapper.class);
+    public List<FilmResponseDto> getActorFilms(int id) {
+        FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
         Optional<Actor> optionalActor = findOne(id);
         if (optionalActor.isPresent()) {
             Actor actor = optionalActor.get();
             return actor.getActorFilms().stream()
-                    .map((film) -> film.getFilm()).map(film -> actorFilmMapper.toDto(film))
+                    .map((film) -> film.getFilm()).map(film -> filmMapper.toDto(film))
                     .collect(Collectors.toList());
         }
         throw new IllegalArgumentException();
     }
 
-    public ActorFilmResponseDto getActorOneFilm(int actorId, int filmId) {
-        ActorFilmMapper actorFilmMapper = Mappers.getMapper(ActorFilmMapper.class);
+    public FilmResponseDto getActorOneFilm(int actorId, int filmId) {
+        FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
         Film film =  findActorFilmByIds(actorId, filmId);
         if(film != null){
-            ActorFilmResponseDto actorFilmResponseDto = actorFilmMapper.toDto(film);
-            return actorFilmResponseDto;
+            FilmResponseDto filmResponseDto = filmMapper.toDto(film);
+            return filmResponseDto;
         }
         return null;
     }
@@ -84,9 +84,7 @@ public class ActorService extends ActorRepository<Actor> {
         Film film = findActorFilmByIds(actorId, filmId);
         if(film != null){
             FilmDetailsResponseDto filmDetailsResponseDto = filmDetialsMapper.toDto(film);
-            System.out.println("AFFFFFFF================");
-            filmDetailsResponseDto.getFilmActors().stream();
-//            film.getFilmActors().forEach(e-> System.out.println(e.getActor().getFirstName() + " " + e.getActor().getLastName()));
+            film.getFilmActors().forEach(e-> System.out.println(e.getActor().getFirstName() + " " + e.getActor().getLastName()));
             return filmDetailsResponseDto;
         }
         return null;

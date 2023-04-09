@@ -1,4 +1,4 @@
-package com.iti.services.dtos;
+package com.iti.models.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

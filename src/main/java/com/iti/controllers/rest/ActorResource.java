@@ -1,19 +1,17 @@
 package com.iti.controllers.rest;
 
-import com.iti.models.response.ActorFilmResponseDto;
+import com.iti.models.response.FilmResponseDto;
 import com.iti.models.response.ActorResponseDto;
 import com.iti.models.response.FilmDetailsResponseDto;
 import com.iti.persistence.JPAFactoryManager;
 import com.iti.persistence.entities.Actor;
 import com.iti.services.ActorService;
-import com.iti.services.dtos.FilmActorDto;
 import jakarta.persistence.EntityManager;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
-import java.util.Set;
 
 
 // api/v1
@@ -28,7 +26,8 @@ public class ActorResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getActors(@QueryParam("page") int page, @QueryParam("size") int size){
+
+    public Response getActors(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size){
         List<ActorResponseDto> actor = actorService.getAllActors(page, size);
         return Response.ok().entity(actor).build();
     }
@@ -57,7 +56,7 @@ public class ActorResource {
     @GET
     @Path("{id}/films")
     public Response getActorFilms(@PathParam("id") int id){
-        List<ActorFilmResponseDto> films = actorService.getActorFilms(id);
+        List<FilmResponseDto> films = actorService.getActorFilms(id);
         return Response.ok().entity(films).build();
     }
 
@@ -70,7 +69,7 @@ public class ActorResource {
     @GET
     @Path("{actorId}/films/{filmId}")
     public Response getActorOneFilm(@PathParam("actorId") int actorId, @PathParam("filmId") int filmId){
-        ActorFilmResponseDto film = actorService.getActorOneFilm(actorId, filmId);
+        FilmResponseDto film = actorService.getActorOneFilm(actorId, filmId);
         return Response.ok().entity(film).build();
     }
 

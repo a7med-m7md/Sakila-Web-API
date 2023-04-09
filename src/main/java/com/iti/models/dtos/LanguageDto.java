@@ -1,25 +1,23 @@
-package com.iti.models.response;
+package com.iti.models.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.Instant;
 
 /**
- * A DTO for the {@link com.iti.persistence.entities.Actor} entity
+ * A DTO for the {@link com.iti.persistence.entities.Language} entity
  */
 @AllArgsConstructor
 @Getter
-public class ActorResponseDto implements Serializable {
-    @Size(max = 45)
+public class LanguageDto implements Serializable {
+    private final Short id;
+    @Size(max = 20)
     @NotNull
-    private final String firstName;
-    @Size(max = 45)
+    private final String name;
     @NotNull
-    private final String lastName;
     private final Instant lastUpdate;
 }

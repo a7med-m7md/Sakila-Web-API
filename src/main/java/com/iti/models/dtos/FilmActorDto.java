@@ -1,4 +1,4 @@
-package com.iti.services.dtos;
+package com.iti.models.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,14 +8,12 @@ import java.io.Serializable;
 import java.time.Instant;
 
 /**
- * A DTO for the {@link com.iti.persistence.entities.Store} entity
+ * A DTO for the {@link com.iti.persistence.entities.FilmActor} entity
  */
 @AllArgsConstructor
 @Getter
-public class StoreDto implements Serializable {
-    private final Short id;
-    @NotNull
-    private final AddressDto address;
+public class FilmActorDto implements Serializable {
+    private final FilmDto film;
     @NotNull
     private final Instant lastUpdate;
 }

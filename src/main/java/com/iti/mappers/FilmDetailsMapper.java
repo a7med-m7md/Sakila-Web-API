@@ -1,4 +1,4 @@
-package com.iti.services.mappers;
+package com.iti.mappers;
 
 import com.iti.models.response.FilmDetailsResponseDto;
 import com.iti.persistence.entities.Film;

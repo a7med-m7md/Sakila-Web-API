@@ -1,4 +1,4 @@
-package com.iti.services.dtos;
+package com.iti.models.dtos;
 
 import com.iti.persistence.entities.Actor;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +8,6 @@ import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Set;
 
 /**
  * A DTO for the {@link Actor} entity
