@@ -1,6 +1,7 @@
 package com.iti.models.response;
 
-import com.iti.persistence.entities.Staff;
+import com.iti.models.dtos.PaymentDto;
+import com.iti.models.dtos.RentalDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -8,30 +9,31 @@ import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Set;
 
 /**
- * A DTO for the {@link Staff} entity
+ * A DTO for the {@link com.iti.persistence.entities.Customer} entity
  */
 @AllArgsConstructor
 @Getter
-public class StaffDto implements Serializable {
-    private final Short id;
+public class CustomerResponseDetailsDto implements Serializable {
+    @NotNull
+    private final StoreDto store;
     @Size(max = 45)
     @NotNull
     private final String firstName;
     @Size(max = 45)
     @NotNull
     private final String lastName;
-//    private final byte[] picture;
     @Size(max = 50)
     private final String email;
     @NotNull
+    private final AddressDto address;
+    @NotNull
     private final Boolean active;
-    @Size(max = 16)
     @NotNull
-    private final String username;
-    @Size(max = 40)
-    private final String password;
-    @NotNull
+    private final Instant createDate;
     private final Instant lastUpdate;
+    private final Set<PaymentDto> payments;
+    private final Set<RentalDto> rentals;
 }

@@ -26,7 +26,6 @@ public class ActorResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-
     public Response getActors(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size){
         List<ActorResponseDto> actor = actorService.getAllActors(page, size);
         return Response.ok().entity(actor).build();

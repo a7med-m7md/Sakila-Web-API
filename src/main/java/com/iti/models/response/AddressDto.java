@@ -1,5 +1,7 @@
-package com.iti.models.dtos;
+package com.iti.models.response;
 
+import com.iti.models.dtos.CityDto;
+import com.iti.models.dtos.CustomerDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -33,5 +35,4 @@ public class AddressDto implements Serializable {
     private final String phone;
     @NotNull
     private final Instant lastUpdate;
-    private final Set<CustomerDto> customers;
 }
