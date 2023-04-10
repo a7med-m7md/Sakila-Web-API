@@ -64,14 +64,13 @@ public class Film {
     @Column(name = "special_features")
     private String specialFeatures;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update",  columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "film")
     private Set<Inventory> inventories = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private Set<FilmActor> filmActors = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "film")

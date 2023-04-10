@@ -25,8 +25,7 @@ public class FilmActor {
     @JoinColumn(name = "film_id", nullable = false)
     private Film film;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Instant lastUpdate;
 
 }

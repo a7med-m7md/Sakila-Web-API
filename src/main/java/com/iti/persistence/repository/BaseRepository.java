@@ -37,7 +37,9 @@ public abstract class BaseRepository<T> {
     }
     // deleteById
     public void deleteById(T entity){
+        entityManager.getTransaction().begin();
         entityManager.remove(entity);
+        entityManager.getTransaction().commit();
     }
     // update
     public T update(T entity){

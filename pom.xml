@@ -103,6 +103,11 @@
     <version>6.1.7.Final</version>
 </dependency>
 
+    <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator-cdi</artifactId>
+        <version>7.0.4.Final</version>
+    </dependency>
 <!-- SQL Connector-->
 <dependency>
     <groupId>mysql</groupId>
