@@ -1,5 +1,8 @@
 package com.iti.controllers.rest;
 
+import com.iti.models.dtos.PaymentResponseDto;
+import com.iti.models.request.CustomerRequestDto;
+import com.iti.models.response.CustomerRentalResponseDto;
 import com.iti.models.response.CustomerResponseDetailsDto;
 import com.iti.models.response.CustomerResponseDto;
 import com.iti.persistence.JPAFactoryManager;
@@ -25,6 +28,12 @@ public class CustomerResource {
         return Response.ok().entity(customers).build();
     }
 
+    @POST
+    public Response createCustomer(CustomerRequestDto customerRequestDto){
+        customerService.createCustomer(customerRequestDto);
+        return Response.status(Response.Status.CREATED).build();
+    }
+
     @Path("{customerId}")
     @GET
     public Response getOneCustomer(@PathParam("customerId") int customerId){
@@ -37,6 +46,22 @@ public class CustomerResource {
     public Response getCustomerDetails(@PathParam("customerId") int customerId){
         CustomerResponseDetailsDto customerResponseDetailsDto = customerService.getCustomerDetails(customerId);
         return Response.ok().entity(customerResponseDetailsDto).build();
+    }
+
+    // rentals
+    @Path("{customerId}/rentals")
+    @GET
+    public Response getCustomerRentals(@PathParam("customerId") int customerId){
+        List<CustomerRentalResponseDto> customerRentalResponseDto = customerService.getCustomerRentals(customerId);
+        return Response.ok().entity(customerRentalResponseDto).build();
+    }
+
+    // payment
+    @Path("{customerId}/payments")
+    @GET
+    public Response getCustomerPayments(@PathParam("customerId") int customerId){
+        List<PaymentResponseDto> paymentResponseDtos = customerService.getCustomerPayments(customerId);
+        return Response.ok().entity(paymentResponseDtos).build();
     }
 
 }

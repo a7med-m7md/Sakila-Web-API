@@ -29,6 +29,6 @@ public class CustomerDto implements Serializable {
     @NotNull
     private final Instant createDate;
     private final Instant lastUpdate;
-    private final Set<PaymentDto> payments;
+    private final Set<PaymentResponseDto> payments;
     private final Set<RentalDto> rentals;
 }

@@ -1,18 +1,21 @@
 package com.iti.services;
 
-import com.iti.mappers.CustomerDetailsMapper;
-import com.iti.mappers.CustomerMapper;
-import com.iti.models.dtos.CustomerDto;
+import com.iti.mappers.*;
+import com.iti.models.dtos.PaymentResponseDto;
+import com.iti.models.request.CustomerRequestDto;
+import com.iti.models.response.CustomerRentalResponseDto;
 import com.iti.models.response.CustomerResponseDetailsDto;
 import com.iti.models.response.CustomerResponseDto;
 import com.iti.persistence.entities.Customer;
 import com.iti.persistence.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CustomerService extends CustomerRepository<Customer> {
     private CustomerMapper customerMapper;
@@ -53,4 +56,35 @@ public class CustomerService extends CustomerRepository<Customer> {
     }
 
 
+    public List<CustomerRentalResponseDto> getCustomerRentals(int customerId) {
+        Optional<Customer> optionalCustomer = findOne(customerId);
+        if(optionalCustomer.isPresent()){
+            Customer customer = optionalCustomer.get();
+            CustomerRentalMapper customerRentalMapper = Mappers.getMapper(CustomerRentalMapper.class);
+
+            List<CustomerRentalResponseDto> customerRentalResponseDto = customer.getRentals().stream()
+                    .map(rental -> customerRentalMapper.toDto(rental)).collect(Collectors.toList());
+            return customerRentalResponseDto;
+        }
+        return null;
+    }
+
+    public List<PaymentResponseDto> getCustomerPayments(int customerId) {
+        Optional<Customer> optionalCustomer = findOne(customerId);
+        if(optionalCustomer.isPresent()){
+            Customer customer = optionalCustomer.get();
+            PaymentMapper paymentMapper = Mappers.getMapper(PaymentMapper.class);
+
+            List<PaymentResponseDto> paymentResponseDtos = customer.getPayments().stream()
+                    .map(payment -> paymentMapper.toDto(payment)).collect(Collectors.toList());
+            return paymentResponseDtos;
+        }
+        return null;
+    }
+
+    public void createCustomer(CustomerRequestDto customerRequestDto) {
+        CustomerRequestMapper customerRequestMapper = Mappers.getMapper(CustomerRequestMapper.class);
+        Customer customer = customerRequestMapper.toEntity(customerRequestDto);
+        create(customer);
+    }
 }

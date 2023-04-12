@@ -13,11 +13,9 @@ import java.time.Instant;
  */
 @AllArgsConstructor
 @Getter
-public class PaymentDto implements Serializable {
-    private final Integer id;
+public class PaymentResponseDto implements Serializable {
     @NotNull
     private final BigDecimal amount;
     @NotNull
     private final Instant paymentDate;
-    private final Instant lastUpdate;
 }

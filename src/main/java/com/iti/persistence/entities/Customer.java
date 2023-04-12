@@ -48,11 +48,11 @@ public class Customer {
     @Column(name = "active", nullable = false)
     private Boolean active = false;
 
-    @NotNull
-    @Column(name = "create_date", nullable = false)
+
+    @Column(name = "create_date", nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Instant createDate;
 
-    @Column(name = "last_update")
+    @Column(name = "last_update", nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "customer")
