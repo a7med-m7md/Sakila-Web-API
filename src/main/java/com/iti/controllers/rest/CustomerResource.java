@@ -41,6 +41,20 @@ public class CustomerResource {
         return Response.ok().entity(customerResourceDto).build();
     }
 
+    @Path("{customerId}")
+    @PUT
+    public Response updateCustomer(@PathParam("customerId") int customerId, CustomerRequestDto customerRequestDto){
+        customerService.updateCustomer(customerId, customerRequestDto);
+        return Response.noContent().build();
+    }
+
+    @Path("{customerId}")
+    @DELETE
+    public Response deleteCustomer(@PathParam("customerId") int customerId){
+        customerService.deleteCustomer(customerId);
+        return Response.noContent().build();
+    }
+
     @Path("{customerId}/details")
     @GET
     public Response getCustomerDetails(@PathParam("customerId") int customerId){

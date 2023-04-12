@@ -6,10 +6,10 @@ import com.iti.models.request.CustomerRequestDto;
 import com.iti.models.response.CustomerRentalResponseDto;
 import com.iti.models.response.CustomerResponseDetailsDto;
 import com.iti.models.response.CustomerResponseDto;
+import com.iti.persistence.entities.Actor;
 import com.iti.persistence.entities.Customer;
 import com.iti.persistence.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
-import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
@@ -86,5 +86,27 @@ public class CustomerService extends CustomerRepository<Customer> {
         CustomerRequestMapper customerRequestMapper = Mappers.getMapper(CustomerRequestMapper.class);
         Customer customer = customerRequestMapper.toEntity(customerRequestDto);
         create(customer);
+    }
+
+    public void updateCustomer(int customerId, CustomerRequestDto updatedCustomer) {
+        Optional<Customer> optionalCustomer = findOne(customerId);
+        if (optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+            if (updatedCustomer.getFirstName() != null)
+                customer.setFirstName(updatedCustomer.getFirstName());
+            if (updatedCustomer.getLastName() != null)
+                customer.setLastName(updatedCustomer.getLastName());
+            if(updatedCustomer.getEmail() != null)
+                customer.setEmail(updatedCustomer.getEmail());
+            update(customer);
+        }
+    }
+
+    public void deleteCustomer(int customerId) {
+        Optional<Customer> optionalCustomer = findOne(customerId);
+        if(optionalCustomer.isPresent()){
+            Customer customer = optionalCustomer.get();
+            deleteById(customer);
+        }
     }
 }
