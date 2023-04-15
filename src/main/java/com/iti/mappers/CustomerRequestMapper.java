@@ -31,7 +31,7 @@ public interface CustomerRequestMapper {
     default Address mapAddress(Short addressId){
         if(addressId == null)
             return null;
-        AddressRepository addressRepository = new AddressRepository(entityManager);
+        AddressRepository<Address> addressRepository = new AddressRepository(entityManager);
         return addressRepository.findOne(addressId).get();
     }
 

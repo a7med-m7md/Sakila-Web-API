@@ -5,7 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.geolatte.geom.Point;
+import org.hibernate.annotations.Type;
 
+import java.awt.*;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -48,8 +51,8 @@ public class Address {
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+
+    @Column(name = "last_update", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "address")
@@ -60,10 +63,10 @@ public class Address {
     @OneToMany(mappedBy = "address")
     private Set<Customer> customers = new LinkedHashSet<>();
 
-/*
-    TODO [JPA Buddy] create field to map the 'location' column
-     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "location", columnDefinition = "GEOMETRY(65535) not null")
-    private Object location;
-*/
+
+//    TODO [JPA Buddy] create field to map the 'location' column
+//     Available actions: Define target Java type | Uncomment as is | Remove column mapping
+//    @Column(name = "location", columnDefinition = "GEOMETRY")
+//    private Point location;
+
 }

@@ -194,5 +194,13 @@
         <version>0.2.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-spatial</artifactId>
+        <version>6.2.0.Final</version>
+        <type>pom</type>
+    </dependency>
+
 </dependencies>
         </project>
