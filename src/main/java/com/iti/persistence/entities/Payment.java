@@ -36,11 +36,11 @@ public class Payment {
     @Column(name = "amount", nullable = false, precision = 5, scale = 2)
     private BigDecimal amount;
 
-    @NotNull
-    @Column(name = "payment_date", nullable = false)
+
+    @Column(name = "payment_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Instant paymentDate;
 
-    @Column(name = "last_update")
+    @Column(name = "last_update", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Instant lastUpdate;
 
 }

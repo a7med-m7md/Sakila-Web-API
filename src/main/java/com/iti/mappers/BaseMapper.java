@@ -1,6 +1,12 @@
 package com.iti.mappers;
 
-public interface BaseMapper<Table, DTO> {
-    DTO toDTO(Table table);
-    Table toEntity(DTO dto);
+import com.iti.models.request.PaymentRequestDto;
+import com.iti.models.response.PaymentResponseDto;
+import com.iti.persistence.entities.Payment;
+import org.mapstruct.MappingTarget;
+
+public interface BaseMapper<Table, RequestDTO, ResponseDTO> {
+    ResponseDTO toDTO(Table table);
+    Table toEntity(RequestDTO dto);
+    Table partialUpdate(RequestDTO requestDto, @MappingTarget Table entity);
 }
