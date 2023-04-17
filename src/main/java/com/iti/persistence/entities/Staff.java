@@ -17,6 +17,7 @@ import java.util.Set;
 public class Staff {
     @Id
     @Column(name = "staff_id", columnDefinition = "TINYINT UNSIGNED not null")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
 
     @Size(max = 45)

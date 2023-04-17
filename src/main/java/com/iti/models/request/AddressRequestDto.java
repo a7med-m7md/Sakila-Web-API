@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -17,6 +18,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
+@XmlRootElement
 public class AddressRequestDto implements Serializable {
     @Size(max = 50)
     @NotNull

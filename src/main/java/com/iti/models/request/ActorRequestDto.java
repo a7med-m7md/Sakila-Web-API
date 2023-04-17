@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 @AllArgsConstructor
 @Getter
+@XmlRootElement
 public class ActorRequestDto implements Serializable {
     @Size(max = 45)
     @NotNull

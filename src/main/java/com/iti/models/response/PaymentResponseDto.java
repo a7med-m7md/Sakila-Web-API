@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -17,6 +18,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @Getter
 @Setter
+@XmlRootElement
 public class PaymentResponseDto implements Serializable {
     private Integer id;
     private Integer customerId;

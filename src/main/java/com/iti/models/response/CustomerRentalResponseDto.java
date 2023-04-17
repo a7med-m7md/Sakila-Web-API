@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.Set;
  */
 @AllArgsConstructor
 @Getter
+@XmlRootElement
 public class CustomerRentalResponseDto implements Serializable {
     private final Integer id;
     @NotNull

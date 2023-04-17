@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -14,6 +15,7 @@ import java.time.Instant;
  */
 @AllArgsConstructor
 @Getter
+@XmlRootElement
 public class CategoryDto implements Serializable {
     private final Short id;
     @Size(max = 25)

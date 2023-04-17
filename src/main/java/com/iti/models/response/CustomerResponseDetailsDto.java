@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.Set;
  */
 @AllArgsConstructor
 @Getter
+@XmlRootElement
 public class CustomerResponseDetailsDto implements Serializable {
     @NotNull
     private final StoreResponseDto store;

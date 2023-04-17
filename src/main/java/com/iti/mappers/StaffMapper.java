@@ -7,8 +7,11 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.CDI)
 public interface StaffMapper extends BaseMapper<Staff, StaffRequestDto,StaffResponseDto>{
+    @Mapping(source = "storeId", target = "store.id")
+    @Mapping(source = "addressId", target = "address.id")
     Staff toEntity(StaffRequestDto staffRequestDto);
 
+    @Mapping(source = "store.id", target = "storeId")
     StaffResponseDto toDto(Staff staff);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

@@ -5,33 +5,40 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 
 /**
  * A DTO for the {@link Staff} entity
  */
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
+@XmlRootElement
 public class StaffResponseDto implements Serializable {
-    private final Short id;
+    private Short id;
     @Size(max = 45)
     @NotNull
-    private final String firstName;
+    private String firstName;
     @Size(max = 45)
     @NotNull
-    private final String lastName;
-//    private final byte[] picture;
+    private String lastName;
+    private Short storeId;
+    //    private final byte[] picture;
     @Size(max = 50)
-    private final String email;
+    private String email;
     @NotNull
-    private final Boolean active;
+    private Boolean active;
     @Size(max = 16)
     @NotNull
-    private final String username;
+    private String username;
     @Size(max = 40)
-    private final String password;
+    private String password;
     @NotNull
-    private final Instant lastUpdate;
+    private Instant lastUpdate;
 }

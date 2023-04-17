@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -16,6 +17,7 @@ import java.util.Set;
  */
 @AllArgsConstructor
 @Getter
+@XmlRootElement
 public class FilmDetailsResponseDto implements Serializable {
     private final Integer id;
     @Size(max = 128)

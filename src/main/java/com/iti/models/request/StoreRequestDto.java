@@ -2,6 +2,7 @@ package com.iti.models.request;
 
 import lombok.*;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
+@XmlRootElement
 public class StoreRequestDto implements Serializable {
     private Short managerStaffId;
     private Integer addressId;

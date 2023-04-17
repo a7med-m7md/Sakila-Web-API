@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -13,6 +14,7 @@ import java.time.Instant;
  */
 @AllArgsConstructor
 @Getter
+@XmlRootElement
 public class CustomerResponseDto implements Serializable {
     @Size(max = 45)
     @NotNull
