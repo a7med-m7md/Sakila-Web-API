@@ -35,8 +35,11 @@ public abstract class BaseService<RequestDto, ResponseDto, Entity> {
 
     public void update(RequestDto requestDto, int id) {
         Entity entity = repository.findOne(id).get();
+        System.out.println(entity);
         Entity entity_ = mapper.partialUpdate(requestDto, entity);
+        System.out.println(entity_);
         repository.update(entity_);
+        System.out.println("===>>");
     }
 
     public void deleteById(int id) {

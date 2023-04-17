@@ -13,10 +13,11 @@ import java.time.Instant;
  */
 @AllArgsConstructor
 @Getter
-public class StoreDto implements Serializable {
+public class StoreResponseDto implements Serializable {
     private final Short id;
     @NotNull
-    private final StaffDto managerStaff;
+    private final StaffResponseDto managerStaff;
+    private final AddressDto address;
     @NotNull
     private final Instant lastUpdate;
 }

@@ -1,12 +1,11 @@
 package com.iti.services;
 
 import com.iti.mappers.*;
-import com.iti.models.dtos.PaymentResponseDto;
 import com.iti.models.request.CustomerRequestDto;
+import com.iti.models.response.AddressResponseDto;
 import com.iti.models.response.CustomerRentalResponseDto;
 import com.iti.models.response.CustomerResponseDetailsDto;
 import com.iti.models.response.CustomerResponseDto;
-import com.iti.persistence.entities.Actor;
 import com.iti.persistence.entities.Customer;
 import com.iti.persistence.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
@@ -69,13 +68,13 @@ public class CustomerService extends CustomerRepository<Customer> {
         return null;
     }
 
-    public List<PaymentResponseDto> getCustomerPayments(int customerId) {
+    public List<AddressResponseDto.PaymentResponseDto> getCustomerPayments(int customerId) {
         Optional<Customer> optionalCustomer = findOne(customerId);
         if(optionalCustomer.isPresent()){
             Customer customer = optionalCustomer.get();
             PaymentMapper paymentMapper = Mappers.getMapper(PaymentMapper.class);
 
-            List<PaymentResponseDto> paymentResponseDtos = customer.getPayments().stream()
+            List<AddressResponseDto.PaymentResponseDto> paymentResponseDtos = customer.getPayments().stream()
                     .map(payment -> paymentMapper.toDto(payment)).collect(Collectors.toList());
             return paymentResponseDtos;
         }

@@ -1,7 +1,7 @@
 package com.iti.controllers.rest;
 
-import com.iti.models.dtos.PaymentResponseDto;
 import com.iti.models.request.CustomerRequestDto;
+import com.iti.models.response.AddressResponseDto;
 import com.iti.models.response.CustomerRentalResponseDto;
 import com.iti.models.response.CustomerResponseDetailsDto;
 import com.iti.models.response.CustomerResponseDto;
@@ -74,7 +74,7 @@ public class CustomerResource {
     @Path("{customerId}/payments")
     @GET
     public Response getCustomerPayments(@PathParam("customerId") int customerId){
-        List<PaymentResponseDto> paymentResponseDtos = customerService.getCustomerPayments(customerId);
+        List<AddressResponseDto.PaymentResponseDto> paymentResponseDtos = customerService.getCustomerPayments(customerId);
         return Response.ok().entity(paymentResponseDtos).build();
     }
 

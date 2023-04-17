@@ -16,7 +16,7 @@ import java.time.Instant;
 public class InventoryDto implements Serializable {
     private final Integer id;
     @NotNull
-    private final StoreDto store;
+    private final StoreResponseDto store;
     @NotNull
     private final Instant lastUpdate;
 }

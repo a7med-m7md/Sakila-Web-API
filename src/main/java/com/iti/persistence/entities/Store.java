@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.Instant;
 import java.util.LinkedHashSet;
@@ -16,6 +17,7 @@ import java.util.Set;
 public class Store {
     @Id
     @Column(name = "store_id", columnDefinition = "TINYINT UNSIGNED not null")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
 
     @NotNull
@@ -28,8 +30,7 @@ public class Store {
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "store")

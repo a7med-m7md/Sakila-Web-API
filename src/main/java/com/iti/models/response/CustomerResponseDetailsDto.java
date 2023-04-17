@@ -1,6 +1,5 @@
 package com.iti.models.response;
 
-import com.iti.models.dtos.PaymentResponseDto;
 import com.iti.models.dtos.RentalDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,7 +17,7 @@ import java.util.Set;
 @Getter
 public class CustomerResponseDetailsDto implements Serializable {
     @NotNull
-    private final StoreDto store;
+    private final StoreResponseDto store;
     @Size(max = 45)
     @NotNull
     private final String firstName;
@@ -34,6 +33,6 @@ public class CustomerResponseDetailsDto implements Serializable {
     @NotNull
     private final Instant createDate;
     private final Instant lastUpdate;
-    private final Set<PaymentResponseDto> payments;
+    private final Set<AddressResponseDto.PaymentResponseDto> payments;
     private final Set<RentalDto> rentals;
 }

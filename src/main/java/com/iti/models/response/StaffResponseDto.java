@@ -14,7 +14,7 @@ import java.time.Instant;
  */
 @AllArgsConstructor
 @Getter
-public class StaffDto implements Serializable {
+public class StaffResponseDto implements Serializable {
     private final Short id;
     @Size(max = 45)
     @NotNull

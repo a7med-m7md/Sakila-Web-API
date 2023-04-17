@@ -59,8 +59,8 @@ public class Staff {
     @Column(name = "password", length = 40)
     private String password;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+
+    @Column(name = "last_update", nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "staff")

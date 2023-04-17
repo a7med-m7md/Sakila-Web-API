@@ -1,6 +1,5 @@
 package com.iti.models.response;
 
-import com.iti.models.dtos.PaymentResponseDto;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +20,7 @@ public class CustomerRentalResponseDto implements Serializable {
     @NotNull
     private final InventoryDto inventory;
     private final Instant returnDate;
-    private final Set<PaymentResponseDto> payments;
+    private final Set<AddressResponseDto.PaymentResponseDto> payments;
 
     private final FilmResponseDto film;
 

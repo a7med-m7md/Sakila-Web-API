@@ -1,5 +1,6 @@
 package com.iti.models.dtos;
 
+import com.iti.models.response.AddressResponseDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,6 @@ public class CustomerDto implements Serializable {
     @NotNull
     private final Instant createDate;
     private final Instant lastUpdate;
-    private final Set<PaymentResponseDto> payments;
+    private final Set<AddressResponseDto.PaymentResponseDto> payments;
     private final Set<RentalDto> rentals;
 }
