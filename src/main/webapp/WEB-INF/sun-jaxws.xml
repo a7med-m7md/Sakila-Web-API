@@ -2,8 +2,22 @@
 
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
 
-    <endpoint name="Staff" implementation="com.iti.controllers.soap.StaffWebService" url-pattern="/webapi/staff" />
+    <endpoint name="Actors" implementation="com.iti.controllers.soap.ActorWebService" url-pattern="/webapi/actors" />
 
-<!--    <endpoint name="PaymentService" implementation="com.iti.web.services.PaymentService" url-pattern="/webapi//payment" />-->
+    <endpoint name="Films" implementation="com.iti.controllers.soap.FilmWebService" url-pattern="/webapi/films" />
+
+    <endpoint name="Customers" implementation="com.iti.controllers.soap.CustomerWebService" url-pattern="/webapi/customers" />
+
+    <endpoint name="locations" implementation="com.iti.controllers.soap.AddressWebService" url-pattern="/webapi/locations" />
+
+    <endpoint name="locations" implementation="com.iti.controllers.soap.CityWebService" url-pattern="/webapi/locations" />
+
+    <endpoint name="payments" implementation="com.iti.controllers.soap.PaymentWebService" url-pattern="/webapi/payments" />
+
+    <endpoint name="rentals" implementation="com.iti.controllers.soap.RentalWebService" url-pattern="/webapi/rentals" />
+
+    <endpoint name="stores" implementation="com.iti.controllers.soap.StoreWebService" url-pattern="/webapi/stores" />
+
+    <endpoint name="Staffs" implementation="com.iti.controllers.soap.StaffWebService" url-pattern="/webapi/staffs" />
 
 </endpoints>

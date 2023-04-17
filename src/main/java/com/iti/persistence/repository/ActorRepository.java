@@ -6,8 +6,8 @@ import com.iti.persistence.entities.FilmActor;
 import com.iti.persistence.entities.FilmActorId;
 import jakarta.persistence.EntityManager;
 
-public abstract class ActorRepository<T> extends BaseRepository<Actor> {
-    protected ActorRepository(EntityManager entityManager) {
+public class ActorRepository extends BaseRepository<Actor> {
+    public ActorRepository(EntityManager entityManager) {
         super(entityManager);
     }
 

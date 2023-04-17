@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,13 +16,15 @@ import java.time.Instant;
  */
 @AllArgsConstructor
 @Getter
+@Setter
 @XmlRootElement
+@NoArgsConstructor
 public class ActorResponseDto implements Serializable {
     @Size(max = 45)
     @NotNull
-    private final String firstName;
+    private String firstName;
     @Size(max = 45)
     @NotNull
-    private final String lastName;
-    private final Instant lastUpdate;
+    private String lastName;
+    private Instant lastUpdate;
 }

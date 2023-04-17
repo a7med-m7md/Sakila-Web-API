@@ -1,14 +1,14 @@
 package com.iti.services;
 
-import com.iti.mappers.ActorMapper;
-import com.iti.mappers.FilmCreationMapper;
-import com.iti.mappers.FilmDetailsMapper;
-import com.iti.mappers.FilmMapper;
+import com.iti.mappers.*;
 import com.iti.models.request.FilmRequestDto;
 import com.iti.models.response.ActorResponseDto;
 import com.iti.models.response.FilmDetailsResponseDto;
 import com.iti.models.response.FilmResponseDto;
+import com.iti.persistence.JPAFactoryManager;
 import com.iti.persistence.entities.*;
+import com.iti.persistence.repository.ActorRepository;
+import com.iti.persistence.repository.BaseRepository;
 import com.iti.persistence.repository.FilmRepository;
 import jakarta.persistence.EntityManager;
 import org.mapstruct.factory.Mappers;
@@ -20,36 +20,38 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class FilmService extends FilmRepository<Film> {
+public class FilmService extends BaseService<FilmRequestDto, FilmResponseDto, Film> {
     FilmMapper filmMapper;
+    BaseRepository<Film> repository;
 
-    public FilmService(EntityManager entityManager) {
-        super(entityManager);
+    public FilmService(BaseRepository repository, BaseMapper mapper) {
+        super(repository, mapper);
         filmMapper = Mappers.getMapper(FilmMapper.class);
+        this.repository = repository;
     }
 
-    public List<FilmResponseDto> getAllFilms(int page, int size) {
-        List<FilmResponseDto> filmResponseDtos = new ArrayList<>();
-        List<Film> films = findAll(page, size);
-        for (Film film : films) {
-            FilmResponseDto filmResponseDto = filmMapper.toDto(film);
-            filmResponseDtos.add(filmResponseDto);
-        }
-        return filmResponseDtos;
-    }
+//    public List<FilmResponseDto> getAllFilms(int page, int size) {
+//        List<FilmResponseDto> filmResponseDtos = new ArrayList<>();
+//        List<Film> films = findAll(page, size);
+//        for (Film film : films) {
+//            FilmResponseDto filmResponseDto = filmMapper.toDto(film);
+//            filmResponseDtos.add(filmResponseDto);
+//        }
+//        return filmResponseDtos;
+//    }
 
-    public FilmResponseDto getOneFilm(int filmId) {
-        Optional<Film> filmOptional = findOne(filmId);
-        if (filmOptional.isPresent()) {
-            Film film = filmOptional.get();
-            FilmResponseDto filmResponseDto = filmMapper.toDto(film);
-            return filmResponseDto;
-        }
-        return null;
-    }
+//    public FilmResponseDto getOneFilm(int filmId) {
+//        Optional<Film> filmOptional = findOne(filmId);
+//        if (filmOptional.isPresent()) {
+//            Film film = filmOptional.get();
+//            FilmResponseDto filmResponseDto = filmMapper.toDto(film);
+//            return filmResponseDto;
+//        }
+//        return null;
+//    }
 
     public FilmDetailsResponseDto getFilmDetails(int filmId) {
-        Optional<Film> optionalFilm = findOne(filmId);
+        Optional<Film> optionalFilm = repository.findOne(filmId);
         if (optionalFilm.isPresent()) {
             Film film = optionalFilm.get();
             FilmDetailsMapper filmDetailsMapper = Mappers.getMapper(FilmDetailsMapper.class);
@@ -64,15 +66,19 @@ public class FilmService extends FilmRepository<Film> {
         FilmCreationMapper filmCreationMapper = Mappers.getMapper(FilmCreationMapper.class);
         Film film = filmCreationMapper.toEntity(filmRequestDto);
 
-        System.out.println(filmRequestDto);
-        // is it coupling ????
+//        System.out.println(filmRequestDto);
+//        // is it coupling ????
+//
+//        // Add Actors to a film
+//        ActorService actorService = new ActorService(new ActorRepository(JPAFactoryManager.createEntityManager()),
+//                Mappers.getMapper(ActorMapper.class));
 
-        // Add Actors to a film
-        ActorService actorService = new ActorService(entityManager);
+        ActorRepository actorRepository = new ActorRepository(JPAFactoryManager.createEntityManager());
+
         Set<FilmActor> actors = filmRequestDto.getActorIds()
                 .stream()
                 .map(actorId -> {
-                    Actor actor = actorService.findOne(actorId).get();
+                    Actor actor = actorRepository.findOne(actorId).get();
                     FilmActor filmActor = new FilmActor();
                     filmActor.setId(new FilmActorId(actorId, film.getId()));
                     filmActor.setFilm(film);
@@ -83,33 +89,34 @@ public class FilmService extends FilmRepository<Film> {
 
         film.setFilmActors(actors);
         // Add Language and original language
-        LanguageService languageService = new LanguageService(entityManager);
+        LanguageService languageService = new LanguageService(JPAFactoryManager.createEntityManager());
         Optional<Language> optionalLanguage = languageService.findOne(filmRequestDto.getLanguageId());
         if (optionalLanguage.isPresent()) {
             Language language = optionalLanguage.get();
             film.setLanguage(language);
         }
 
-        // Setting original language
-//        Optional<Language> optionalOriginalLanguage = languageService.findOne(filmRequestDto.getOriginalLanguageId());
-//        if(optionalOriginalLanguage.isPresent()){
-//            Language language = optionalOriginalLanguage.get();
-//            film.setOriginalLanguage(language);
-//        }
-        create(film);
+//         Setting original language
+        Optional<Language> optionalOriginalLanguage = languageService.findOne(filmRequestDto.getOriginalLanguageId());
+        if(optionalOriginalLanguage.isPresent()){
+            Language language = optionalOriginalLanguage.get();
+            film.setOriginalLanguage(language);
+        }
+        System.out.println(film);
+        repository.create(film);
     }
 
-    public void deleteFilm(int filmId) {
-        Optional<Film> optionalFilm = findOne(filmId);
-        if (optionalFilm.isPresent()) {
-            Film film = optionalFilm.get();
-            deleteById(film);
-        }
-    }
+//    public void deleteFilm(int filmId) {
+//        Optional<Film> optionalFilm = findOne(filmId);
+//        if (optionalFilm.isPresent()) {
+//            Film film = optionalFilm.get();
+//            deleteById(film);
+//        }
+//    }
 
 
     public List<ActorResponseDto> getFilmActors(int filmId) {
-        Optional<Film> optionalFilm = findOne(filmId);
+        Optional<Film> optionalFilm = repository.findOne(filmId);
         List<ActorResponseDto> actorResponseDtos = new ArrayList<>();
         if (optionalFilm.isPresent()) {
             Film film = optionalFilm.get();
@@ -126,7 +133,7 @@ public class FilmService extends FilmRepository<Film> {
     }
 
     public ActorResponseDto getFilmSpecificActor(int filmId, int actorId) {
-        Optional<Film> optionalFilm = findOne(filmId);
+        Optional<Film> optionalFilm = repository.findOne(filmId);
         if (optionalFilm.isPresent()) {
             Film film = optionalFilm.get();
             Set<FilmActor> filmActors = film.getFilmActors();
@@ -141,6 +148,5 @@ public class FilmService extends FilmRepository<Film> {
         }
         return null;
     }
-
 
 }

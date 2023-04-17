@@ -1,16 +1,20 @@
 package com.iti.controllers.rest;
 
 
+import com.iti.mappers.FilmMapper;
 import com.iti.models.request.FilmRequestDto;
 import com.iti.models.response.ActorResponseDto;
 import com.iti.models.response.FilmDetailsResponseDto;
 import com.iti.models.response.FilmResponseDto;
 import com.iti.persistence.JPAFactoryManager;
+import com.iti.persistence.repository.FilmRepository;
 import com.iti.services.FilmService;
 import jakarta.persistence.EntityManager;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.mapstruct.factory.Mappers;
+
 import java.util.List;
 
 @Path("films")
@@ -19,13 +23,15 @@ public class FilmResource {
     EntityManager entityManager;
     public FilmResource() {
         entityManager = JPAFactoryManager.createEntityManager();
-        filmService = new FilmService(entityManager);
+        filmService = new FilmService(
+                new FilmRepository(entityManager),
+                Mappers.getMapper(FilmMapper.class));
     }
 
     @GET
     public Response getAllFilms(@DefaultValue("1") @QueryParam("page") int page,
                                 @DefaultValue("10") @QueryParam("size") int size) {
-        List<FilmResponseDto> filmResponseDtos = filmService.getAllFilms(page, size);
+        List<FilmResponseDto> filmResponseDtos = filmService.findAll(page, size);
         return Response.ok().entity(filmResponseDtos).build();
     }
 
@@ -39,14 +45,14 @@ public class FilmResource {
     @GET
     @Path("{filmId}")
     public Response getOneFilm(@PathParam("filmId") int filmId){
-        FilmResponseDto filmResponseDto = filmService.getOneFilm(filmId);
+        FilmResponseDto filmResponseDto = filmService.findById(filmId);
         return Response.ok().entity(filmResponseDto).build();
     }
 
     @DELETE
     @Path("{filmId}")
     public Response deleteFilm(@PathParam("filmId") int filmId){
-        filmService.deleteFilm(filmId);
+        filmService.deleteById(filmId);
         return Response.noContent().build();
     }
 
