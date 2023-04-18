@@ -29,7 +29,6 @@ public class ActorResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getActors(@DefaultValue("1") @QueryParam("page") int page,
                               @DefaultValue("10") @QueryParam("size") int size){
         List<ActorResponseDto> actor = actorService.findAll(page, size);
@@ -38,7 +37,6 @@ public class ActorResource {
 
     @Path("{id}")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getActor(@PathParam("id") int id) {
         ActorResponseDto actor = actorService.findById(id);
         return Response.ok().entity(actor).build();

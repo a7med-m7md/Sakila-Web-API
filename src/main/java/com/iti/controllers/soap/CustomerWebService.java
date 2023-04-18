@@ -1,4 +1,6 @@
 package com.iti.controllers.soap;
+
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.models.request.CustomerRequestDto;
 import com.iti.models.response.AddressResponseDto;
 import com.iti.models.response.CustomerRentalResponseDto;
@@ -18,55 +20,88 @@ import java.util.List;
 public class CustomerWebService {
     private CustomerService customerService;
 
-    public CustomerWebService(){
+    public CustomerWebService() {
         EntityManager entityManager = JPAFactoryManager.createEntityManager();
         customerService = new CustomerService(entityManager);
     }
 
     @WebMethod
     public List<CustomerResponseDto> getAllCustomers(@WebParam(name = "size") int size,
-                                                     @WebParam(name = "page") int page){
-        if(page == 0 || size == 0){
+                                                     @WebParam(name = "page") int page) {
+        if (page == 0 || size == 0) {
             page = 1;
             size = 10;
         }
-        return customerService.findAllCustomers(page, size);
+        try {
+            return customerService.findAllCustomers(page, size);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
-    public void createCustomer(@WebParam(name = "customerRequestDto") CustomerRequestDto customerRequestDto){
-        customerService.createCustomer(customerRequestDto);
+    public void createCustomer(@WebParam(name = "customerRequestDto") CustomerRequestDto customerRequestDto) {
+        try {
+            customerService.createCustomer(customerRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
-    public CustomerResponseDto getOneCustomer(@WebParam(name = "customerId") int customerId){
-        return customerService.getCustomer(customerId);
+    public CustomerResponseDto getOneCustomer(@WebParam(name = "customerId") int customerId) {
+        try {
+            return customerService.getCustomer(customerId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void updateCustomer(@WebParam(name = "customerId") int customerId,
-                               @WebParam(name = "customerRequestDto") CustomerRequestDto customerRequestDto){
-        customerService.updateCustomer(customerId, customerRequestDto);
+                               @WebParam(name = "customerRequestDto") CustomerRequestDto customerRequestDto) {
+        try {
+            customerService.updateCustomer(customerId, customerRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
-    public void deleteCustomer(@WebParam(name = "customerId") int customerId){
-        customerService.deleteCustomer(customerId);
+    public void deleteCustomer(@WebParam(name = "customerId") int customerId) {
+        try {
+            customerService.deleteCustomer(customerId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
-    public CustomerResponseDetailsDto getCustomerDetails(@WebParam(name = "customerId") int customerId){
-        return customerService.getCustomerDetails(customerId);
+    public CustomerResponseDetailsDto getCustomerDetails(@WebParam(name = "customerId") int customerId) {
+        try {
+            return customerService.getCustomerDetails(customerId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
-    public List<CustomerRentalResponseDto> getCustomerRentals(@WebParam(name = "customerId") int customerId){
-        return customerService.getCustomerRentals(customerId);
+    public List<CustomerRentalResponseDto> getCustomerRentals(@WebParam(name = "customerId") int customerId) {
+        try {
+            return customerService.getCustomerRentals(customerId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
-    public List<AddressResponseDto.PaymentResponseDto> getCustomerPayments(@WebParam(name = "customerId") int customerId){
-        return customerService.getCustomerPayments(customerId);
+    public List<AddressResponseDto.PaymentResponseDto> getCustomerPayments(@WebParam(name = "customerId") int customerId) {
+        try {
+            return customerService.getCustomerPayments(customerId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
+
     }
 
 }

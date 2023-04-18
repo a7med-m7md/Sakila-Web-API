@@ -1,5 +1,6 @@
 package com.iti.controllers.soap;
 
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.mappers.FilmMapper;
 import com.iti.models.request.FilmRequestDto;
 import com.iti.models.response.ActorResponseDto;
@@ -34,33 +35,53 @@ public class FilmWebService {
             @WebParam(name = "page") int page,
             @WebParam(name = "size") int size
     ) {
-        if(page == 0 || size == 0){
+        if (page == 0 || size == 0) {
             page = 1;
             size = 10;
         }
-        return filmService.findAll(page, size);
+        try {
+            return filmService.findAll(page, size);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void createFilm(@WebParam(name = "film") FilmRequestDto filmRequestDto) {
-        filmService.createFilm(filmRequestDto);
+        try {
+            filmService.createFilm(filmRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     @WebResult(name = "film")
     public FilmResponseDto getOneFilm(@WebParam(name = "filmId") int filmId) {
-        return filmService.findById(filmId);
+        try {
+            return filmService.findById(filmId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void deleteFilm(@WebParam(name = "filmId") int filmId) {
-        filmService.deleteById(filmId);
+        try {
+            filmService.deleteById(filmId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     @WebResult(name = "actor")
     public List<ActorResponseDto> getFilmActors(@WebParam(name = "filmId") int filmId) {
-        return filmService.getFilmActors(filmId);
+        try {
+            return filmService.getFilmActors(filmId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
@@ -69,13 +90,21 @@ public class FilmWebService {
             @WebParam(name = "filmId") int filmId,
             @WebParam(name = "actorId") int actorId
     ) {
-        return filmService.getFilmSpecificActor(filmId, actorId);
+        try {
+            return filmService.getFilmSpecificActor(filmId, actorId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     @WebResult(name = "details")
     public FilmDetailsResponseDto getFilmDetails(@WebParam(name = "filmId") int filmId) {
-        return filmService.getFilmDetails(filmId);
+        try {
+            return filmService.getFilmDetails(filmId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
 }

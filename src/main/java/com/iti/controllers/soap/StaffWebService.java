@@ -1,6 +1,8 @@
 package com.iti.controllers.soap;
 
 import java.util.List;
+
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.mappers.StaffMapper;
 import com.iti.models.request.StaffRequestDto;
 import com.iti.models.response.StaffResponseDto;
@@ -28,28 +30,48 @@ public class StaffWebService {
     @WebMethod
     @WebResult(name = "staffResponseDto")
     public List<StaffResponseDto> getAllStaff() {
-        return staffService.findAll(1, 10);
+        try {
+            return staffService.findAll(1, 10);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod(operationName = "createStaff")
     public void createStaff(@WebParam(name = "staffRequestDto") StaffRequestDto staffRequestDto) {
-        staffService.save(staffRequestDto);
+        try {
+            staffService.save(staffRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod(operationName = "getStaffById")
     @WebResult(name = "staffResponseDto")
     public StaffResponseDto getStaffById(@WebParam(name = "staffId") int staffId) {
-        return staffService.findById(staffId);
+        try {
+            return staffService.findById(staffId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod(operationName = "updateStaff")
     public void updateStaff(@WebParam(name = "staffId") int staffId,
                             @WebParam(name = "staffRequestDto") StaffRequestDto staffRequestDto) {
-        staffService.update(staffRequestDto, staffId);
+        try {
+            staffService.update(staffRequestDto, staffId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod(operationName = "deleteStaffById")
     public void deleteStaffById(@WebParam(name = "staffId") int staffId) {
-        staffService.deleteById(staffId);
+        try {
+            staffService.deleteById(staffId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 }

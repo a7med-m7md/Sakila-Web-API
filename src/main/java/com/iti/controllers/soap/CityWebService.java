@@ -1,5 +1,6 @@
 package com.iti.controllers.soap;
 
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.models.request.CityRequestDto;
 import com.iti.models.response.CityResponseDto;
 import com.iti.persistence.JPAFactoryManager;
@@ -23,31 +24,51 @@ public class CityWebService {
 
     @WebMethod
     public List<CityResponseDto> getAllCities(@WebParam(name = "page") int page, @WebParam(name = "size") int size) {
-        if(page == 0 || size == 0){
+        if (page == 0 || size == 0) {
             page = 1;
             size = 10;
         }
-        List<CityResponseDto> cityResponseDtoList = cityService.getAllCities(page, size);
-        return cityResponseDtoList;
+        try {
+            List<CityResponseDto> cityResponseDtoList = cityService.getAllCities(page, size);
+            return cityResponseDtoList;
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void createCity(@WebParam(name = "city") CityRequestDto cityRequestDto) {
-        cityService.createCity(cityRequestDto);
+        try {
+            cityService.createCity(cityRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public CityResponseDto getCity(@WebParam(name = "cityId") int cityId) {
-        return cityService.getOneCity(cityId);
+        try {
+            return cityService.getOneCity(cityId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void updateCity(@WebParam(name = "cityId") int cityId, @WebParam(name = "city") CityRequestDto cityRequestDto) {
-        cityService.updateCity(cityId, cityRequestDto);
+        try {
+            cityService.updateCity(cityId, cityRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void deleteCity(@WebParam(name = "cityId") int cityId) {
-        cityService.deleteCity(cityId);
+        try {
+            cityService.deleteCity(cityId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 }

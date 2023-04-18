@@ -1,5 +1,6 @@
 package com.iti.controllers.soap;
 
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.mappers.RentalMapper;
 import com.iti.models.request.RentalRequestDto;
 import com.iti.models.response.RentalResponseDto;
@@ -29,32 +30,52 @@ public class RentalWebService {
     public List<RentalResponseDto> getAllRentals(
             @WebParam(name = "page") int page,
             @WebParam(name = "size") int size) {
-        return rentalService.findAll(page, size);
+        try {
+            return rentalService.findAll(page, size);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void createRental(
             @WebParam(name = "rental") RentalRequestDto rentalRequestDto) {
-        rentalService.save(rentalRequestDto);
+        try {
+            rentalService.save(rentalRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     @WebResult(name = "rental")
     public RentalResponseDto getRental(
             @WebParam(name = "rentalId") int rentalId) {
-        return rentalService.findById(rentalId);
+        try {
+            return rentalService.findById(rentalId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void updateRental(
             @WebParam(name = "rentalId") int rentalId,
             @WebParam(name = "rental") RentalRequestDto rentalRequestDto) {
-        rentalService.update(rentalRequestDto, rentalId);
+        try {
+            rentalService.update(rentalRequestDto, rentalId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void deleteRental(
             @WebParam(name = "rentalId") int rentalId) {
-        rentalService.deleteById(rentalId);
+        try {
+            rentalService.deleteById(rentalId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 }

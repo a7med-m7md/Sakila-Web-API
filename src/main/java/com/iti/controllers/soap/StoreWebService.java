@@ -1,5 +1,6 @@
 package com.iti.controllers.soap;
 
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.mappers.StoreMapper;
 import com.iti.models.request.StoreRequestDto;
 import com.iti.models.response.StaffResponseDto;
@@ -9,11 +10,13 @@ import com.iti.persistence.repository.StoreRepository;
 import com.iti.services.StoreService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import jakarta.jws.WebService;
 import jakarta.persistence.EntityManager;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+@WebService
 public class StoreWebService {
     private StoreService storeService;
 
@@ -24,41 +27,69 @@ public class StoreWebService {
 
     @WebMethod
     public List<StoreResponseDto> getAllStores(@WebParam(name = "page") int page, @WebParam(name = "size") int size) {
-        List<StoreResponseDto> storeResponseDtoList = storeService.findAll(page, size);
-        return storeResponseDtoList;
+        try {
+            List<StoreResponseDto> storeResponseDtoList = storeService.findAll(page, size);
+            return storeResponseDtoList;
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void createStore(@WebParam(name = "storeRequest") StoreRequestDto storeRequestDto) {
-        storeService.save(storeRequestDto);
+        try {
+            storeService.save(storeRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public StoreResponseDto getOneStore(@WebParam(name = "storeId") int storeId) {
-        StoreResponseDto storeResponseDto = storeService.findById(storeId);
-        return storeResponseDto;
+        try {
+            StoreResponseDto storeResponseDto = storeService.findById(storeId);
+            return storeResponseDto;
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void updateStore(@WebParam(name = "storeId") int storeId, @WebParam(name = "storeRequest") StoreRequestDto storeRequestDto) {
-        storeService.update(storeRequestDto, storeId);
+        try {
+            storeService.update(storeRequestDto, storeId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void deleteStore(@WebParam(name = "storeId") int storeId) {
-        storeService.deleteById(storeId);
+        try {
+            storeService.deleteById(storeId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public List<StaffResponseDto> getAllStaffsInStore(@WebParam(name = "storeId") int storeId) {
-        List<StaffResponseDto> staffResponseDtoList = storeService.getStoreStaff(storeId);
-        return staffResponseDtoList;
+        try {
+            List<StaffResponseDto> staffResponseDtoList = storeService.getStoreStaff(storeId);
+            return staffResponseDtoList;
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public StaffResponseDto getOneStaffInStore(@WebParam(name = "storeId") int storeId, @WebParam(name = "staffId") int staffId) {
-        StaffResponseDto staff = storeService.getOneStaffInStore(storeId, staffId);
-        return staff;
+        try {
+            StaffResponseDto staff = storeService.getOneStaffInStore(storeId, staffId);
+            return staff;
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
 }

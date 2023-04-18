@@ -21,6 +21,15 @@ public class JPAFactoryManager {
     }
 
     public static void closeEntityManager(){
+        EntityManager entityManager = ENTITY_MANAGER_THREAD_LOCAL.get();
+        if(entityManager != null){
+            ENTITY_MANAGER_THREAD_LOCAL.set(null);
+            entityManager.close();
+        }
+    }
+
+
+    public static void closeEntityManagerFactory(){
         entityManagerFactory.close();
     }
 }

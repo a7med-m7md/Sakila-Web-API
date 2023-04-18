@@ -1,5 +1,6 @@
 package com.iti.controllers.soap;
 
+import com.iti.controllers.soap.exceptions.SoapException;
 import com.iti.mappers.PaymentResponseMapper;
 import com.iti.models.request.PaymentRequestDto;
 import com.iti.models.response.PaymentResponseDto;
@@ -26,30 +27,50 @@ public class PaymentWebService {
 
     @WebMethod
     public List<PaymentResponseDto> getAllPayments(int page, int size) {
-        if(page == 0 || size == 0){
+        if (page == 0 || size == 0) {
             page = 1;
             size = 10;
         }
-        return paymentService.findAll(page, size);
+        try {
+            return paymentService.findAll(page, size);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void createPayment(@WebParam(name = "paymentRequestDto") PaymentRequestDto paymentRequestDto) {
-        paymentService.save(paymentRequestDto);
+        try {
+            paymentService.save(paymentRequestDto);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public PaymentResponseDto getPayment(@WebParam(name = "paymentId") int paymentId) {
-        return paymentService.findById(paymentId);
+        try {
+            return paymentService.findById(paymentId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void updatePayment(@WebParam(name = "paymentId") int paymentId, @WebParam(name = "paymentRequestDto") PaymentRequestDto paymentRequestDto) {
-        paymentService.update(paymentRequestDto, paymentId);
+        try {
+            paymentService.update(paymentRequestDto, paymentId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 
     @WebMethod
     public void deletePayment(@WebParam(name = "paymentId") int paymentId) {
-        paymentService.deleteById(paymentId);
+        try {
+            paymentService.deleteById(paymentId);
+        } catch (Exception exception) {
+            throw new SoapException(exception.getMessage());
+        }
     }
 }
