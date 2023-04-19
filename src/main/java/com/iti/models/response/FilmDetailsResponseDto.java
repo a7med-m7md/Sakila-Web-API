@@ -1,6 +1,5 @@
 package com.iti.models.response;
 
-import com.iti.models.dtos.LanguageDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -26,8 +25,8 @@ public class FilmDetailsResponseDto implements Serializable {
     private final String description;
     private final Integer releaseYear;
     @NotNull
-    private final LanguageDto language;
-    private final LanguageDto originalLanguage;
+    private final LanguageResponseDto language;
+    private final LanguageResponseDto originalLanguage;
     private final Short rentalDuration;
     @NotNull
     private final BigDecimal rentalRate;

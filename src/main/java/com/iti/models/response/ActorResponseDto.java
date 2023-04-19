@@ -20,6 +20,7 @@ import java.time.Instant;
 @XmlRootElement
 @NoArgsConstructor
 public class ActorResponseDto implements Serializable {
+    private int id;
     @Size(max = 45)
     @NotNull
     private String firstName;

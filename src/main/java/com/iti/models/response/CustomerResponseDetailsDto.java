@@ -1,6 +1,5 @@
 package com.iti.models.response;
 
-import com.iti.models.dtos.RentalDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -36,5 +35,5 @@ public class CustomerResponseDetailsDto implements Serializable {
     private final Instant createDate;
     private final Instant lastUpdate;
     private final Set<AddressResponseDto.PaymentResponseDto> payments;
-    private final Set<RentalDto> rentals;
+    private final Set<RentalResponseDto> rentals;
 }

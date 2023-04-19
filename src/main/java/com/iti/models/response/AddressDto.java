@@ -1,7 +1,5 @@
 package com.iti.models.response;
 
-import com.iti.models.dtos.CityDto;
-import com.iti.models.dtos.CustomerDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -29,7 +27,7 @@ public class AddressDto implements Serializable {
     @NotNull
     private final String district;
     @NotNull
-    private final CityDto city;
+    private final CityResponseDto city;
     @Size(max = 10)
     private final String postalCode;
     @Size(max = 20)

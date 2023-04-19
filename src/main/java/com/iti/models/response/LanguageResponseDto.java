@@ -1,7 +1,7 @@
-package com.iti.models.dtos;
+package com.iti.models.response;
 
-import com.iti.models.response.AddressDto;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,14 +9,15 @@ import java.io.Serializable;
 import java.time.Instant;
 
 /**
- * A DTO for the {@link com.iti.persistence.entities.Store} entity
+ * A DTO for the {@link com.iti.persistence.entities.Language} entity
  */
 @AllArgsConstructor
 @Getter
-public class StoreDto implements Serializable {
+public class LanguageResponseDto implements Serializable {
     private final Short id;
+    @Size(max = 20)
     @NotNull
-    private final AddressDto address;
+    private final String name;
     @NotNull
     private final Instant lastUpdate;
 }
