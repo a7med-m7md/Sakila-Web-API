@@ -49,6 +49,8 @@ public abstract class BaseRepository<T> {
         return entity;
     }
 
+
+
     // Passing a JPQL
     public List<Object> findByNamedQuery(String queryName) {
         return entityManager.createQuery(queryName).getResultList();

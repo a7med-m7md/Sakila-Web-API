@@ -11,9 +11,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-/**
- * A DTO for the {@link com.iti.persistence.entities.Payment} entity
- */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,9 +22,7 @@ public class PaymentResponseDto implements Serializable {
     private Integer customerId;
     private Short staffId;
     private Integer rentalId;
-    @NotNull
     private BigDecimal amount;
-    @NotNull
     private Instant paymentDate;
     private Instant lastUpdate;
 }

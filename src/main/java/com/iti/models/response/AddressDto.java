@@ -10,29 +10,17 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Set;
 
-/**
- * A DTO for the {@link com.iti.persistence.entities.Address} entity
- */
+
 @AllArgsConstructor
 @Getter
 @XmlRootElement
 public class AddressDto implements Serializable {
-    private final Integer id;
-    @Size(max = 50)
-    @NotNull
-    private final String address;
-    @Size(max = 50)
-    private final String address2;
-    @Size(max = 20)
-    @NotNull
-    private final String district;
-    @NotNull
-    private final CityResponseDto city;
-    @Size(max = 10)
-    private final String postalCode;
-    @Size(max = 20)
-    @NotNull
-    private final String phone;
-    @NotNull
-    private final Instant lastUpdate;
+    private Integer id;
+    private String address;
+    private String address2;
+    private String district;
+    private CityResponseDto city;
+    private String postalCode;
+    private String phone;
+    private Instant lastUpdate;
 }

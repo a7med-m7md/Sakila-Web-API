@@ -4,31 +4,28 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 
-/**
- * A DTO for the {@link com.iti.persistence.entities.FilmActor} entity
- */
 @AllArgsConstructor
 @Getter
+@Setter
 @XmlRootElement
+@NoArgsConstructor
 public class FilmActorDto implements Serializable {
-    private final ActorDto actor;
+    private ActorDto actor;
 
-    /**
-     * A DTO for the {@link com.iti.persistence.entities.Actor} entity
-     */
     @AllArgsConstructor
     @Getter
+    @Setter
+    @XmlRootElement
+    @NoArgsConstructor
     public static class ActorDto implements Serializable {
-        @Size(max = 45)
-        @NotNull
-        private final String firstName;
-        @Size(max = 45)
-        @NotNull
-        private final String lastName;
+        private String firstName;
+        private String lastName;
     }
 }

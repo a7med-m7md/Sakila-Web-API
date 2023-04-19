@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -15,25 +17,27 @@ import java.util.Set;
  */
 @AllArgsConstructor
 @Getter
+@Setter
 @XmlRootElement
+@NoArgsConstructor
 public class CustomerResponseDetailsDto implements Serializable {
     @NotNull
-    private final StoreResponseDto store;
+    private StoreResponseDto store;
     @Size(max = 45)
     @NotNull
-    private final String firstName;
+    private String firstName;
     @Size(max = 45)
     @NotNull
-    private final String lastName;
+    private String lastName;
     @Size(max = 50)
-    private final String email;
+    private String email;
     @NotNull
-    private final AddressDto address;
+    private AddressDto address;
     @NotNull
-    private final Boolean active;
+    private Boolean active;
     @NotNull
-    private final Instant createDate;
-    private final Instant lastUpdate;
-    private final Set<AddressResponseDto.PaymentResponseDto> payments;
-    private final Set<RentalResponseDto> rentals;
+    private Instant createDate;
+    private Instant lastUpdate;
+    private Set<AddressResponseDto.PaymentResponseDto> payments;
+    private Set<RentalResponseDto> rentals;
 }

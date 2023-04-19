@@ -1,6 +1,7 @@
 package com.iti.services;
 
 import com.iti.mappers.BaseMapper;
+import com.iti.persistence.JPAFactoryManager;
 import com.iti.persistence.entities.Payment;
 import com.iti.persistence.repository.BaseRepository;
 
@@ -37,9 +38,7 @@ public abstract class BaseService<RequestDto, ResponseDto, Entity> {
         Entity entity = repository.findOne(id).get();
         System.out.println(entity);
         Entity entity_ = mapper.partialUpdate(requestDto, entity);
-        System.out.println(entity_);
         repository.update(entity_);
-        System.out.println("===>>");
     }
 
     public void deleteById(int id) {

@@ -1,24 +1,24 @@
 package com.iti.models.response;
 
-import com.iti.persistence.entities.Inventory;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.Instant;
 
-/**
- * A DTO for the {@link Inventory} entity
- */
 @AllArgsConstructor
 @Getter
+@Setter
 @XmlRootElement
+@NoArgsConstructor
 public class InventoryDto implements Serializable {
-    private final Integer id;
+    private Integer id;
     @NotNull
-    private final StoreResponseDto store;
+    private StoreResponseDto store;
     @NotNull
-    private final Instant lastUpdate;
+    private Instant lastUpdate;
 }

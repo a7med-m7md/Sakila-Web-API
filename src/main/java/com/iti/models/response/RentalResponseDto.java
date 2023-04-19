@@ -12,9 +12,7 @@ import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/**
- * A DTO for the {@link com.iti.persistence.entities.Rental} entity
- */
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,14 +20,11 @@ import java.util.Set;
 @XmlRootElement
 public class RentalResponseDto implements Serializable {
     private Integer id;
-    @NotNull
     private Instant rentalDate;
 //    @NotNull
 //    private InventoryDto inventory;
-    @NotNull
     private CustomerResponseDto customer;
     private Instant returnDate;
-    @NotNull
     private Instant lastUpdate;
 //    private Set<PaymentResponseDto> payments = new LinkedHashSet<>();
 }

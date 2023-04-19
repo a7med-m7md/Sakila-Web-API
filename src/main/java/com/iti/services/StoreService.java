@@ -28,6 +28,8 @@ public class StoreService extends BaseService<StoreRequestDto, StoreResponseDto,
         this.repository = repository;
     }
 
+
+
     public List<StaffResponseDto> getStoreStaff(int storeId) {
         StaffMapper staffMapper = Mappers.getMapper(StaffMapper.class);
         List<StaffResponseDto> staffResponseDtoList;
