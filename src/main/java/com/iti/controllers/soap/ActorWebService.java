@@ -21,7 +21,7 @@ public class ActorWebService {
     private final ActorService actorService;
 
     public ActorWebService() {
-        this.actorService = new ActorService(
+        this.actorService = ActorService.getInstance(
                 new ActorRepository(JPAFactoryManager.createEntityManager()),
                 Mappers.getMapper(ActorMapper.class));
     }

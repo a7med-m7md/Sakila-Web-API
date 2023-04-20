@@ -6,6 +6,7 @@ import com.iti.models.request.StoreRequestDto;
 import com.iti.models.response.StaffResponseDto;
 import com.iti.models.response.StoreResponseDto;
 import com.iti.persistence.JPAFactoryManager;
+import com.iti.persistence.entities.Store;
 import com.iti.persistence.repository.StoreRepository;
 import com.iti.services.StoreService;
 import jakarta.jws.WebMethod;
@@ -21,8 +22,8 @@ public class StoreWebService {
     private StoreService storeService;
 
     public StoreWebService() {
-        EntityManager entityManager = JPAFactoryManager.createEntityManager();
-        storeService = new StoreService(new StoreRepository(entityManager), Mappers.getMapper(StoreMapper.class));
+//        EntityManager entityManager = JPAFactoryManager.createEntityManager();
+        storeService = StoreService.getInstance();
     }
 
     @WebMethod

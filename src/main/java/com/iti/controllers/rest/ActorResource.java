@@ -24,7 +24,7 @@ public class ActorResource {
     ActorService actorService;
     public ActorResource(){
         entityManager = JPAFactoryManager.createEntityManager();
-        actorService = new ActorService(new ActorRepository(entityManager),
+        actorService = ActorService.getInstance(new ActorRepository(entityManager),
                 Mappers.getMapper(ActorMapper.class));
     }
 

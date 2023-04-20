@@ -22,46 +22,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ActorService extends BaseService<ActorRequestDto, ActorResponseDto, Actor> {
-//    public class ActorService extends ActorRepository<Actor> {
     BaseRepository<Actor> repository;
+    private static ActorService instance = null;
 
-    public ActorService(BaseRepository<Actor> repository, BaseMapper mapper) {
+    private ActorService(BaseRepository<Actor> repository, BaseMapper mapper) {
         super(repository, mapper);
         this.repository = repository;
     }
 
-//    public List<ActorResponseDto> getAllActors(int page, int size) {
-//        List<ActorResponseDto> actors = findAll(page, size);
-//        actorMapper = Mappers.getMapper(ActorMapper.class);
-//        List<ActorResponseDto> actorDtos = new ArrayList<>();
-//        for (Actor actor : actors) {
-//            ActorResponseDto actorResponseDto = actorMapper.toDto(actor);
-//            actorDtos.add(actorResponseDto);
-//        }
-//        return actorDtos;
-//    }
-
-//    public Optional<ActorResponseDto> getActor(int id) {
-//        Optional<Actor> actor = findOne(id);
-//        if (actor.isPresent()) {
-//            actorMapper = Mappers.getMapper(ActorMapper.class);
-//            ActorResponseDto actorDto = actorMapper.toDto(actor.get());
-//            return Optional.of(actorDto);
-//        }
-//        return Optional.empty();
-//    }
-
-//    public void updateActor(Actor updatedActor, int id) {
-//        Optional<Actor> optionalActor = findOne(id);
-//        if (optionalActor.isPresent()) {
-//            Actor actor = optionalActor.get();
-//            if (updatedActor.getFirstName() != null)
-//                actor.setFirstName(updatedActor.getFirstName());
-//            if (updatedActor.getLastName() != null)
-//                actor.setLastName(updatedActor.getLastName());
-//            update(actor);
-//        }
-//    }
+    public static ActorService getInstance(BaseRepository<Actor> repository, BaseMapper mapper) {
+        if (instance == null) {
+            instance = new ActorService(repository, mapper);
+        }
+        return instance;
+    }
 
     public List<FilmResponseDto> getActorFilms(int id) {
         FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
