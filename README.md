@@ -26,11 +26,17 @@ You can see database Schema here: [Schema](sakila.png)
 
 
 # 👨‍💻 Documentation
-* 📃 [Postman RESTful Api Docs](https://www.postman.com/interstellar-meadow-495201/workspace/sakila-development/overview)
+* 📃 [ Postman RESTful Api Docs ](https://documenter.getpostman.com/view/17178810/2s93Y2SMVz)[](https://www.postman.com/interstellar-meadow-495201/workspace/sakila-development/overview)
 * 📃 [Soap-UI Docs](Sakila-soapui-project.xml)
 
+# Requirements
+* JDK 11 or higher
+* Apache Tomcat 9 or higher
+* Maven 3 or higher
+* Sakila database
 
-## 🛠️ Installation
+
+# 🛠️ Installation
 ### Clone Repository
 `git clone https://github.com/a7med-m7md/Sakila-Web-API`
 ### Configure Database Connection Settings
