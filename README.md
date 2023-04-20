@@ -23,6 +23,16 @@ You can see database Schema here: [Schema](sakila.png)
 * Postman
 * SOAP-UI
 
+# Sample REST Endpoints
+| Endpoints                               | Method |                                      Notes |
+|-----------------------------------------|:-------|-------------------------------------------:|
+| /actors/                                | GET    |                             Get all Actors |
+| /actors/                                | POST   |                              Create  Actor |
+| /actors/{actorId}                       | GET    |                         Get a single Actor |
+| /actors/{actorId}                       | PUT    |                             Edit the Actor |
+| /actors/{actorId}/films                 | GET    |          Get all films of a specific actor |
+| /actors/{actorId}/films/{filmId}/details | GET    | GET details about film of a specific actor |
+
 
 
 # 👨‍💻 Documentation
