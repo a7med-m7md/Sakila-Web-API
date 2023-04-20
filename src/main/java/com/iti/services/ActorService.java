@@ -22,7 +22,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ActorService extends BaseService<ActorRequestDto, ActorResponseDto, Actor> {
-    BaseRepository<Actor> repository;
+    BaseRepository<Actor> repository ;
     private static ActorService instance = null;
 
     private ActorService(BaseRepository<Actor> repository, BaseMapper mapper) {
