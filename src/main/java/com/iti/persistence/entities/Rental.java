@@ -19,8 +19,8 @@ public class Rental {
     @Column(name = "rental_id", nullable = false)
     private Integer id;
 
-    @NotNull
-    @Column(name = "rental_date", nullable = false)
+
+    @Column(name = "rental_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Instant rentalDate;
 
     @NotNull
@@ -41,8 +41,7 @@ public class Rental {
     @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
-    @NotNull
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update", insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Instant lastUpdate;
 
     @OneToMany(mappedBy = "rental")

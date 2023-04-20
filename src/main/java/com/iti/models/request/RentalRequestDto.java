@@ -22,13 +22,8 @@ import java.util.Set;
 @Setter
 @XmlRootElement
 public class RentalRequestDto implements Serializable {
-    @NotNull
-    private Instant rentalDate;
     private Integer inventoryId;
     private Integer customerId;
-    private Instant returnDate;
     private Short staffId;
-    @NotNull
-    private Instant lastUpdate;
-    private Set<PaymentResponseDto> payments = new LinkedHashSet<>();
+    private Instant returnDate;
 }

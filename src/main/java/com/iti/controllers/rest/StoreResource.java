@@ -43,7 +43,6 @@ public class StoreResource {
         return Response.ok().entity(storeResponseDto).build();
     }
 
-    //todo there is an error here in mapper should be implemented
     @PUT
     @Path("{storeId}")
     public Response updateStore(@PathParam("storeId") int storeId, StoreRequestDto storeRequestDto){
