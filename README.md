@@ -7,8 +7,10 @@ This project implements a web API that exposes resources using both RESTful (JAX
 ![image](project%20structure.png)
 
 
-## 💾 Database Schema
-You can see database Schema here: [Schema](sakila.png)
+## 💾 Database 
+* You can import sample Sakila MySQL database [download](https://downloads.mysql.com/docs/sakila-db.zip)
+* You can see database Schema here: [Schema](sakila.png)
+
 
 
 ##  ⚙️ Technologies used
@@ -60,7 +62,6 @@ Before you can use the Sakila Web API Services, you need to configure the databa
 
 
 ### Maven
-* You can import sample Sakila MySQL database [download](https://downloads.mysql.com/docs/sakila-db.zip)
 * Change the configuration of tomcat in `pom.xml`
 * Deploy the application in tomcat `mvn clean compile tomcat7:redeploy`
 
