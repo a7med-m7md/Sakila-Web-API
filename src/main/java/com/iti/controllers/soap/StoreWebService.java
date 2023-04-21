@@ -22,8 +22,8 @@ public class StoreWebService {
     private StoreService storeService;
 
     public StoreWebService() {
-//        EntityManager entityManager = JPAFactoryManager.createEntityManager();
-        storeService = StoreService.getInstance();
+        EntityManager entityManager = JPAFactoryManager.createEntityManager();
+        storeService = new StoreService(new StoreRepository(entityManager), Mappers.getMapper(StoreMapper.class));
     }
 
     @WebMethod
