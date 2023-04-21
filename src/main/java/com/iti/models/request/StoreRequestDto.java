@@ -2,7 +2,7 @@ package com.iti.models.request;
 
 import lombok.*;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 

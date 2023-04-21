@@ -3,7 +3,7 @@ package com.iti.controllers.rest.exceptions;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Builder

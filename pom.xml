@@ -103,11 +103,13 @@
             <version>6.1.7.Final</version>
         </dependency>
 
+        <!-- Hibernate Validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator-cdi</artifactId>
-            <version>7.0.4.Final</version>
+            <version>8.0.0.Final</version>
         </dependency>
+
         <!-- SQL Connector-->
         <dependency>
             <groupId>mysql</groupId>
@@ -115,6 +117,7 @@
             <version>8.0.32</version>
         </dependency>
 
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -122,17 +125,17 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Map struct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.5.3.Final</version>
         </dependency>
 
+
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
-            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
-            <!--             artifactId>jersey-container-servlet</artifactId -->
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
@@ -149,7 +152,7 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>4.0.0</version>
+            <version>5.0.1</version>
         </dependency>
 
         <dependency>
@@ -161,7 +164,7 @@
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>4.0.1</version>
+            <version>4.0.2</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -171,23 +174,21 @@
             <version>3.1.1</version>
         </dependency>
 
+        <!-- jakarta xml bind api -->
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
+
+        <!-- jersey media json jackson -->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>3.1.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>2.0.SP1</version>
-        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok-mapstruct-binding</artifactId>
@@ -211,15 +212,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-spatial</artifactId>
-            <version>6.2.0.Final</version>
-            <type>pom</type>
-        </dependency>
-
-
         <!-- jakarta servlet api -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -227,7 +219,6 @@
             <version>6.0.0</version>
             <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
+
 </project>
